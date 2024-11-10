@@ -101,4 +101,3 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 ## Acknowledgments
 
 Special thanks to the contributors of [React Strict DOM](https://facebook.github.io/react-strict-dom) and StyleX for their foundational work in CSS-in-JS and static extraction patterns.
-````
