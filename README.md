@@ -88,7 +88,7 @@ The `@stylex` directive will be automatically replaced with the statically extra
 
 ### Running the Plugin
 
-Once configured, the plugin will automatically process and extract static CSS based on your defined `include` and `exclude` options. This setup supports web-only projects like Next.js and Remix, and and universal platforms with support for native apps like Expo.
+Once configured, the plugin will automatically process and extract static CSS based on your defined `include` and `exclude` options. This setup supports web-only projects like Next.js and Remix, and universal platforms with support for native apps like Expo.
 
 ## Examples
 - [Expo Web Integration](https://github.com/javascripter/expo-stylex-postcss-integration/watchers): Supports Expo Web with support for [DOM components](https://docs.expo.dev/guides/dom-components/).
