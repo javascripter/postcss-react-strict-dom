@@ -80,9 +80,25 @@ export default function babelConfig() {
 }
 ```
 
+### Importing a global CSS file in your project
+
+Create a `global.css` in your project:
+```css
+/* src/global.css */
+@stylex;
+```
+
+Then, import the file in your root layout file:
+
+```typescript
+import '@/global.css'
+```
+
+The `@stylex` directive will be automatically replaced with the statically extracted CSS by this plugin.
+
 ### Running the Plugin
 
-Once configured, the plugin will automatically process and extract static CSS based on your defined `include` and `exclude` options. This setup supports both web and native platforms for integrated projects like Expo.
+Once configured, the plugin will automatically process and extract static CSS based on your defined `include` and `exclude` options. This setup supports web-only projects like Next.js and Remix, and and universal platforms with support for native apps like Expo.
 
 ## Examples
 - [Expo Web Integration](https://github.com/javascripter/expo-stylex-postcss-integration/watchers): Supports Expo Web with support for [DOM components](https://docs.expo.dev/guides/dom-components/).
