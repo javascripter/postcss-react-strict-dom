@@ -14,8 +14,6 @@ npm install postcss-react-strict-dom --save-dev
 yarn add postcss-react-strict-dom --dev
 ```
 
-````
-
 ## Usage
 
 Configure `postcss.config.js` to include `postcss-react-strict-dom` in your project.
