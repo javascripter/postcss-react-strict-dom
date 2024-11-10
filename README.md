@@ -84,6 +84,10 @@ export default function babelConfig() {
 
 Once configured, the plugin will automatically process and extract static CSS based on your defined `include` and `exclude` options. This setup supports both web and native platforms for integrated projects like Expo.
 
+## Examples
+- [Expo Web Integration](https://github.com/javascripter/expo-stylex-postcss-integration/watchers): Supports Expo Web with support for [DOM components](https://docs.expo.dev/guides/dom-components/).
+- [Next.js with Turbopack Integration](https://github.com/javascripter/nextjs-stylex-postcss-integration): Experimental integration with Turbopack. Uses the official Babel preset under the hood.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
