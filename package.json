@@ -1,6 +1,6 @@
 {
   "name": "postcss-react-strict-dom",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "PostCSS plugin for React Strict DOM",
   "keywords": [
     "postcss",
@@ -9,6 +9,10 @@
     "postcss-react-strict-dom"
   ],
   "type": "module",
+  "files": [
+    "dist",
+    "src"
+  ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
