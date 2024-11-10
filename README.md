@@ -38,28 +38,18 @@ module.exports = {
 ```
 
 #### Configuration Options
-
-- **include**: Array of paths or glob patterns to compile.
-- **exclude**: Array of paths or glob patterns to exclude from compilation. Paths in `exclude` take precedence over `include`.
-- **cwd**: Working directory for the plugin; defaults to `process.cwd()`.
-- **babelConfig**: Options for Babel configuration. By default, the plugin reads from `babel.config.js` in your project. For custom configurations, set `babelrc: false` and specify desired options. Refer to [Babel Config Options](https://babeljs.io/docs/options) for available options.
-
-Example extracted code snippet:
-
 ```typescript
-/**
- * Configures the builder with the provided options.
- * @param options - The options to configure the builder.
- */
-function configure(options: {
+type Options = {
   include: string[]
   exclude: string[]
   cwd: string
   babelConfig: babel.TransformOptions
-}) {
-  config = options
 }
 ```
+- **include**: Array of paths or glob patterns to compile.
+- **exclude**: Array of paths or glob patterns to exclude from compilation. Paths in `exclude` take precedence over `include`.
+- **cwd**: Working directory for the plugin; defaults to `process.cwd()`.
+- **babelConfig**: Options for Babel configuration. By default, the plugin reads from `babel.config.js` in your project. For custom configurations, set `babelrc: false` and specify desired options. Refer to [Babel Config Options](https://babeljs.io/docs/options) for available options.
 
 ### Babel Configuration
 
