@@ -2,9 +2,10 @@ import * as babel from '@babel/core'
 import type { PluginCreator } from 'postcss'
 import postcss from 'postcss'
 import { createBuilder } from './builder'
+import * as path from 'node:path'
 
 interface PluginOptions {
-  include: string[]
+  include?: string[]
   exclude?: string[]
   cwd?: string
   babelConfig?: babel.TransformOptions
@@ -14,6 +15,31 @@ const PLUGIN_NAME = 'postcss-react-strict-dom'
 
 const builder = createBuilder()
 
+function getDefaultInclude() {
+  let reactStrictDomPackageJsonFilePath: string
+  try {
+    reactStrictDomPackageJsonFilePath = require.resolve(
+      'react-strict-dom/package.json'
+    )
+  } catch (error) {
+    throw new Error(
+      `Could not find the "react-strict-dom" package. Make sure it is installed in your project.`
+    )
+  }
+  return [
+    // Include the React Strict DOM package's source files by default
+    path.join(reactStrictDomPackageJsonFilePath, 'dist/**/*.{js,jsx,ts,tsx}'),
+  ]
+}
+
+function getDefaultExclude() {
+  return [
+    // Exclude TypeScript declaration files by default
+    // because it never contains any CSS rules.
+    '**/*.d.ts',
+  ]
+}
+
 /**
  * PostCSS plugin for processing StyleX and React Strict DOM rules.
  * @param options - Configuration options for the plugin, including file
@@ -22,12 +48,8 @@ const builder = createBuilder()
  */
 const plugin: PluginCreator<PluginOptions> = (options) => {
   const {
-    include,
-    exclude = [
-      // Exclude TypeScript declaration files by default
-      // because it never contains any CSS rules.
-      '**/*.d.ts',
-    ],
+    include = [...getDefaultInclude(), ...(options.include ?? [])],
+    exclude = [...getDefaultExclude(), ...(options.exclude ?? [])],
     cwd = process.cwd(),
     // By default reuses the Babel configuration from the project root.
     // Use `babelrc: false` to disable this behavior.
