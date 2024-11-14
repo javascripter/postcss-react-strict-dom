@@ -5,7 +5,7 @@ import { createBuilder } from './builder'
 import * as path from 'node:path'
 
 interface PluginOptions {
-  include?: string[]
+  include: string[]
   exclude?: string[]
   cwd?: string
   babelConfig?: babel.TransformOptions
@@ -48,7 +48,7 @@ function getDefaultExclude() {
  */
 const plugin: PluginCreator<PluginOptions> = (options) => {
   const {
-    include = [...getDefaultInclude(), ...(options.include ?? [])],
+    include = [...getDefaultInclude(), ...options.include],
     exclude = [...getDefaultExclude(), ...(options.exclude ?? [])],
     cwd = process.cwd(),
     // By default reuses the Babel configuration from the project root.
