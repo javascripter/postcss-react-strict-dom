@@ -48,13 +48,14 @@ function getDefaultExclude() {
  */
 const plugin: PluginCreator<PluginOptions> = (options) => {
   const {
-    include = [...getDefaultInclude(), ...options.include],
-    exclude = [...getDefaultExclude(), ...(options.exclude ?? [])],
     cwd = process.cwd(),
     // By default reuses the Babel configuration from the project root.
     // Use `babelrc: false` to disable this behavior.
     babelConfig = {},
   } = options
+
+  const include = [...getDefaultInclude(), ...options.include]
+  const exclude = [...getDefaultExclude(), ...(options.exclude ?? [])]
 
   return {
     postcssPlugin: PLUGIN_NAME,
