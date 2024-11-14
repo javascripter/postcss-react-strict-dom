@@ -38,14 +38,16 @@ module.exports = {
 ```
 
 #### Configuration Options
+
 ```typescript
 type Options = {
   include: string[]
-  exclude: string[]
+  exclude?: string[]
   cwd: string
   babelConfig: babel.TransformOptions
 }
 ```
+
 - **include**: Array of paths or glob patterns to compile.
 - **exclude**: Array of paths or glob patterns to exclude from compilation. Paths in `exclude` take precedence over `include`.
 - **cwd**: Working directory for the plugin; defaults to `process.cwd()`.
@@ -73,6 +75,7 @@ export default function babelConfig() {
 ### Importing a global CSS file in your project
 
 Create a `global.css` in your project:
+
 ```css
 /* src/global.css */
 @stylex;
@@ -91,6 +94,7 @@ The `@stylex` directive will be automatically replaced with the statically extra
 Once configured, the plugin will automatically process and extract static CSS based on your defined `include` and `exclude` options. This setup supports web-only projects like Next.js and Remix, and universal platforms with support for native apps like Expo.
 
 ## Examples
+
 - [Expo Web Integration](https://github.com/javascripter/expo-stylex-postcss-integration/watchers): Supports Expo Web with support for [DOM components](https://docs.expo.dev/guides/dom-components/).
 - [Next.js with Turbopack Integration](https://github.com/javascripter/nextjs-stylex-postcss-integration): Experimental integration with Turbopack. Uses the official Babel preset under the hood.
 
