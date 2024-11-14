@@ -27,7 +27,7 @@
     }
   },
   "scripts": {
-    "build": "tsup"
+    "build": "tsup-node"
   },
   "author": "Tsubasa Sakai <javascripter@tsukkun.net>",
   "license": "MIT",
