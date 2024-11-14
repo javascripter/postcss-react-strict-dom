@@ -2,7 +2,6 @@ import * as babel from '@babel/core'
 import type { PluginCreator } from 'postcss'
 import postcss from 'postcss'
 import { createBuilder } from './builder'
-import * as path from 'node:path'
 
 interface PluginOptions {
   include: string[]
@@ -16,19 +15,9 @@ const PLUGIN_NAME = 'postcss-react-strict-dom'
 const builder = createBuilder()
 
 function getDefaultInclude() {
-  let reactStrictDomPackageJsonFilePath: string
-  try {
-    reactStrictDomPackageJsonFilePath = require.resolve(
-      'react-strict-dom/package.json'
-    )
-  } catch (error) {
-    throw new Error(
-      `Could not find the "react-strict-dom" package. Make sure it is installed in your project.`
-    )
-  }
   return [
     // Include the React Strict DOM package's source files by default
-    path.join(reactStrictDomPackageJsonFilePath, 'dist/**/*.{js,jsx,ts,tsx}'),
+    require.resolve('react-strict-dom'),
   ]
 }
 
