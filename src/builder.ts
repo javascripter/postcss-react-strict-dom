@@ -139,8 +139,15 @@ export function createBuilder() {
     const { cwd, babelConfig } = getConfig()
 
     const files = getFiles()
-
     const filesToTransform = []
+
+    // Remove deleted files since the last build
+    for (const file of fileModifiedMap.keys()) {
+      if (!files.includes(file)) {
+        fileModifiedMap.delete(file)
+        bundler.remove(file)
+      }
+    }
 
     for (const file of files) {
       const filePath = path.resolve(cwd, file)
