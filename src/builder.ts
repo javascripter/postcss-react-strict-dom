@@ -135,7 +135,11 @@ export function createBuilder() {
    * Transforms the included files, bundles the CSS, and returns the result.
    * @returns The bundled CSS as a string.
    */
-  async function build() {
+  async function build({
+    shouldSkipTransformError,
+  }: {
+    shouldSkipTransformError: boolean
+  }) {
     const { cwd, babelConfig } = getConfig()
 
     const files = getFiles()
@@ -175,7 +179,10 @@ export function createBuilder() {
         if (!bundler.shouldTransform(contents)) {
           return
         }
-        return bundler.transform(file, contents, babelConfig)
+        return bundler.transform(file, contents, babelConfig, {
+          isDev: process.env.NODE_ENV === 'development',
+          shouldSkipTransformError,
+        })
       })
     )
 
