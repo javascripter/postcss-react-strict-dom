@@ -46,6 +46,11 @@ const plugin: PluginCreator<PluginOptions> = (options) => {
   const include = [...getDefaultInclude(), ...options.include]
   const exclude = [...getDefaultExclude(), ...(options.exclude ?? [])]
 
+  // Whether to skip the error when transforming StyleX rules.
+  // Useful in watch mode where Fast Refresh can recover from errors.
+  // Initial transform will still throw errors in watch mode to surface issues early.
+  let shouldSkipTransformError = false
+
   return {
     postcssPlugin: PLUGIN_NAME,
     plugins: [
@@ -86,7 +91,9 @@ const plugin: PluginCreator<PluginOptions> = (options) => {
         }
 
         // Build and parse the CSS from collected StyleX rules
-        const css = await builder.build()
+        const css = await builder.build({
+          shouldSkipTransformError,
+        })
         const parsed = await postcss.parse(css, {
           from: fileName,
         })
@@ -95,6 +102,11 @@ const plugin: PluginCreator<PluginOptions> = (options) => {
         styleXAtRule.replaceWith(parsed)
 
         result.root = root
+
+        if (!shouldSkipTransformError) {
+          // Build was successful, subsequent builds are for watch mode
+          shouldSkipTransformError = true
+        }
       },
     ],
   }

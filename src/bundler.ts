@@ -42,18 +42,34 @@ export function createBundler() {
   async function transform(
     id: string,
     sourceCode: string,
-    babelConfig: babel.TransformOptions
+    babelConfig: babel.TransformOptions,
+    options: {
+      isDev: boolean
+      shouldSkipTransformError: boolean
+    }
   ) {
-    const { code, map, metadata } = await babel.transformAsync(sourceCode, {
-      filename: id,
-      caller: {
-        name: 'postcss-react-strict-dom',
-        platform: 'web',
-        isDev: process.env.NODE_ENV === 'development',
-        supportsStaticESM: true,
-      },
-      ...babelConfig,
-    })
+    const { isDev, shouldSkipTransformError } = options
+    const { code, map, metadata } = await babel
+      .transformAsync(sourceCode, {
+        filename: id,
+        caller: {
+          name: 'postcss-react-strict-dom',
+          platform: 'web',
+          isDev,
+          supportsStaticESM: true,
+        },
+        ...babelConfig,
+      })
+      .catch((error) => {
+        if (shouldSkipTransformError) {
+          console.warn(
+            `[postcss-react-strict-dom] Failed to transform "${id}": ${error.message}`
+          )
+
+          return { code: sourceCode, map: null, metadata: {} }
+        }
+        throw error
+      })
     const stylex = (metadata as { stylex?: StyleXRule[] }).stylex
     if (stylex != null && stylex.length > 0) {
       styleXRulesMap.set(id, stylex)
