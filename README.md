@@ -95,7 +95,7 @@ Once configured, the plugin will automatically process and extract static CSS ba
 ## Examples
 
 - [Expo Web Integration](https://github.com/javascripter/expo-stylex-postcss-integration/watchers): Supports Expo Web with support for [DOM components](https://docs.expo.dev/guides/dom-components/).
-- [Next.js with Turbopack Integration](https://github.com/javascripter/nextjs-stylex-postcss-integration): Experimental integration with Turbopack. Uses the official Babel preset under the hood.
+- [Next.js Integration](https://github.com/javascripter/nextjs-react-strict-dom-demo): Next.js demo. Uses the official Babel preset under the hood.
 
 ## License
 
