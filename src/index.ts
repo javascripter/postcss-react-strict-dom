@@ -23,9 +23,10 @@ function getDefaultInclude() {
 
 function getDefaultExclude() {
   return [
-    // Exclude TypeScript declaration files by default
+    // Exclude type declaration files by default
     // because it never contains any CSS rules.
     '**/*.d.ts',
+    '**/*.flow',
   ]
 }
 
