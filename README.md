@@ -1,5 +1,7 @@
 # postcss-react-strict-dom
 
+> PostCSS Plugin has been merged upstream. Please migrate to `react-strict-dom/postcss-plugin` as per [docs](https://facebook.github.io/react-strict-dom/learn/setup/#postcss-configuration).
+
 **postcss-react-strict-dom** is a PostCSS plugin that enables static CSS
 extraction with React Strict DOM, compatible with various bundlers like Next.js
 and Expo Web.
